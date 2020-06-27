@@ -26,24 +26,23 @@ class App extends React.Component{
 
   handleSwitchClick = (event) => {
     console.log("handleSwitchClick");
-    this.setState({isLogin: !this.state.isLogin})
-    this.state.isLogin ? this.setState({buttonName: 'Switch to UsersAPI'}) : this.setState({buttonName: 'Switch to CommentsAPI'})
-    this.renderWhichAPI();
+    this.setState({isLogin: !this.state.isLogin});
+    this.state.isLogin ? this.setState({buttonName: 'Switch to UsersAPI'}) : this.setState({buttonName: 'Switch to CommentsAPI'});
   }
 
   componentDidMount(){
     console.log("componentDidMount");
-    axios.get('https://jsonplaceholder.typicode.com/users').then( response => this.setState({users: response.data}))
-    axios.get('https://jsonplaceholder.typicode.com/comments?postId=1').then( response => {this.setState({comments: response.data})})
+    axios.get('https://jsonplaceholder.typicode.com/users').then( response => this.setState({users: response.data}));
+    axios.get('https://jsonplaceholder.typicode.com/comments?postId=1').then( response => {this.setState({comments: response.data})});
   }
 
 
   render(){
     console.log('App.render');
     return ( <div className='App'>
-      {this.renderWhichAPI()}
-  <button onClick={this.handleSwitchClick}>{this.state.buttonName}</button>
-    </div>)
+     <this.renderWhichAPI />
+      <button onClick={this.handleSwitchClick}>{this.state.buttonName}</button>
+    </div>);
   }
 }
 
